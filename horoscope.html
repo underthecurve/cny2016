@@ -1,0 +1,346 @@
+<!doctype html>
+  <html lang="en">
+    <head>
+    <meta charset="utf-8">
+
+    <script type="text/javascript">
+    // Get sign based on date
+    function getSign(date) {
+        date = new Date(date);
+        firstDate = new Date('02/05/1924');
+        for (var i = 0; i < dates.length; i++) {
+            var begDate = new Date(dates[i].beginDate),
+                endDate = new Date(dates[i].endDate);
+            if (date >= begDate && date <= endDate) {
+                return dates[i].sign;
+            } else if (date < firstDate) {
+                // in case picked to early
+                document.getElementById('error_msg').innerHTML="Please pick another date";
+            }
+        }
+    }
+
+
+
+    // finds sign based on date
+    function checkDate() {
+        var month = document.getElementById('month_select').value,
+            day = document.getElementById('day_select').value,
+            year = document.getElementById('year_select').value,
+            date = month + '/' + day + '/' + year;
+
+        // check that all items are filled out
+        if (month.length > 0 && day.length > 0 && year.length > 0) {
+            var sign = getSign(date);
+            document.getElementById('display_sign').innerHTML = sign;
+            for (var i = 0; i < descriptions.length; i++) {
+                if (descriptions[i].sign.toLowerCase() === sign) {
+                    document.getElementById('sign_description').innerHTML = descriptions[i].description;
+                    document.getElementById('sign_horoscope').innerHTML = descriptions[i].horoscope;
+
+                }
+            }
+        }
+        }   
+    
+
+    </script>
+
+<style type="text/css">
+    #month_select, #day_select, #year_select {
+        min-width: 0;
+    }
+    #month_select {
+        width: 130px;
+        margin: 0 5px 0 0;
+    }
+    #day_select {
+        width: 70px;
+        margin: 0 5px 0 0;
+    }
+    #year_select {
+        width: 80px;
+        margin: 0 5px 0 0;
+    }
+    .sign_hover {
+        cursor: pointer;
+    }
+    #display_sign {
+        text-transform: capitalize;
+    }
+
+    #sign_wheel, #sign_wheel svg {
+        max-width: 850px;
+        max-height: 800px;
+        margin: 0 auto;
+    }
+
+    #desktoptext {
+        display: none;
+    }
+    .tophat-banner-container {
+        margin-left: -10px;
+    }
+    #images {
+        display: none;
+    }
+    #error_msg {
+        vertical-align: middle;
+        font-family: Arial, sans-serif;
+        color: red;
+        line-height: 40px;
+    }
+    .sign_image {
+        cursor: pointer;
+    }
+    #sign_legend {
+        font-family: Arial,sans-serif;
+        font-size: 14px;
+        text-align: center;
+    }
+    .legend_item {
+        margin: 0 10px 0 0;
+    }
+    .legend_square {
+        width: 12px;
+        height: 12px;
+        display: inline-block;
+        margin: 0 2px 0 0;
+    }
+    .author a {
+        display: inline-block;
+    }
+    @media (min-width: 500px) {
+        #sign_wheel {
+            width: 80%;
+        }
+        #images {
+            display: block;
+        }
+    }
+
+    @media (min-width: 975px) {
+        #mobiletext {
+            display: none;
+        }
+        #desktoptext {
+            display: block;
+        }
+        #images {
+            display: block;
+        }
+        #sign_wheel {
+            margin: 20px 0 0 0;
+            float: right;
+            width: 60%;
+        }
+        .left {
+            float: left;
+            width: 39%;
+        }
+        .spanleft {
+            width: 100%;
+        }
+    }
+
+
+</style>
+
+    </head>
+
+
+<body>
+      <h1>When is your birthday?</h1>
+
+
+      <form class="standalone-dropdown">
+        <fieldset>
+        <select id="month_select">
+          <option value="" selected="">Month</option>
+          <option value="01">January</option>
+          <option value="02">February</option>
+          <option value="03">March</option>
+          <option value="04">April</option>
+          <option value="05">May</option>
+          <option value="06">June</option>
+          <option value="07">July</option>
+          <option value="08">August</option>
+          <option value="09">September</option>
+          <option value="10">October</option>
+          <option value="11">November</option>
+          <option value="12">December</option>
+         </select>
+        
+        <select id="day_select">
+            <option value="" selected="">Day</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+            <option value="16">16</option>
+            <option value="17">17</option>
+            <option value="18">18</option>
+            <option value="19">19</option>
+            <option value="20">20</option>
+            <option value="21">21</option>
+            <option value="22">22</option>
+            <option value="23">23</option>
+            <option value="24">24</option>
+            <option value="25">25</option>
+            <option value="26">26</option>
+            <option value="27">27</option>
+            <option value="28">28</option>
+            <option value="29">29</option>
+            <option value="30">30</option>
+            <option value="31">31</option>
+            </select>
+                
+        <select id="year_select">
+            <option value="" selected="">Year</option>
+            <option value="1993">1993</option>
+            <option value="1992">1992</option>
+            <option value="1991">1991</option>
+            <option value="1990">1990</option>
+            <option value="1989">1989</option>
+            <option value="1988">1988</option>
+            <option value="1987">1987</option>
+            <option value="1986">1986</option>
+            <option value="1985">1985</option>
+            <option value="1984">1984</option>
+            <option value="1983">1983</option>
+            <option value="1982">1982</option>
+            <option value="1981">1981</option>
+            <option value="1980">1980</option>
+            <option value="1979">1979</option>
+            <option value="1978">1978</option>
+            <option value="1977">1977</option>
+            <option value="1976">1976</option>
+            <option value="1975">1975</option>
+            <option value="1974">1974</option>
+            <option value="1973">1973</option>
+            <option value="1972">1972</option>
+            <option value="1971">1971</option>
+            <option value="1970">1970</option>
+            <option value="1969">1969</option>
+            <option value="1968">1968</option>
+            <option value="1967">1967</option>
+            <option value="1966">1966</option>
+            <option value="1965">1965</option>
+            <option value="1964">1964</option>
+            <option value="1963">1963</option>
+            <option value="1962">1962</option>
+            <option value="1961">1961</option>
+            <option value="1960">1960</option>
+            <option value="1959">1959</option>
+            <option value="1958">1958</option>
+            <option value="1957">1957</option>
+            <option value="1956">1956</option>
+            <option value="1955">1955</option>
+            <option value="1954">1954</option>
+            <option value="1953">1953</option>
+            <option value="1952">1952</option>
+            <option value="1951">1951</option>
+            <option value="1950">1950</option>
+            <option value="1949">1949</option>
+            <option value="1948">1948</option>
+            <option value="1947">1947</option>
+            </select>
+         <span id="error_msg"></span>
+        </fieldset>
+                                              
+      </form>
+      
+<script type="text/javascript">
+
+        var dates = [{"sign":"rat","beginDate":"02/05/1924","endDate":"01/23/1925"},{"sign":"ox","beginDate":"01/24/1925","endDate":"02/12/1926"},{"sign":"tiger","beginDate":"02/13/1926","endDate":"02/01/1927"},{"sign":"rabbit","beginDate":"02/02/1927","endDate":"01/22/1928"},{"sign":"dragon","beginDate":"01/23/1928","endDate":"02/09/1929"},{"sign":"snake","beginDate":"02/10/1929","endDate":"01/29/1930"},{"sign":"horse","beginDate":"01/30/1930","endDate":"02/16/1931"},{"sign":"goat","beginDate":"02/17/1931","endDate":"02/05/1932"},{"sign":"monkey","beginDate":"02/06/1932","endDate":"01/25/1933"},{"sign":"rooster","beginDate":"01/26/1933","endDate":"02/13/1934"},{"sign":"dog","beginDate":"02/14/1934","endDate":"02/03/1935"},{"sign":"pig","beginDate":"02/04/1935","endDate":"01/23/1936"},{"sign":"rat","beginDate":"01/24/1936","endDate":"02/10/1937"},{"sign":"ox","beginDate":"02/11/1937","endDate":"01/30/1938"},{"sign":"tiger","beginDate":"01/31/1938","endDate":"02/18/1939"},{"sign":"rabbit","beginDate":"02/19/1939","endDate":"02/07/1940"},{"sign":"dragon","beginDate":"02/08/1940","endDate":"01/26/1941"},{"sign":"snake","beginDate":"01/27/1941","endDate":"02/14/1942"},{"sign":"horse","beginDate":"02/15/1942","endDate":"02/04/1943"},{"sign":"goat","beginDate":"02/05/1943","endDate":"01/24/1944"},{"sign":"monkey","beginDate":"01/25/1944","endDate":"02/12/1945"},{"sign":"rooster","beginDate":"02/13/1945","endDate":"02/01/1946"},{"sign":"dog","beginDate":"02/02/1946","endDate":"01/21/1947"},{"sign":"pig","beginDate":"01/22/1947","endDate":"02/09/1948"},{"sign":"rat","beginDate":"02/10/1948","endDate":"01/28/1949"},{"sign":"ox","beginDate":"01/29/1949","endDate":"02/16/1950"},{"sign":"tiger","beginDate":"02/17/1950","endDate":"02/05/1951"},{"sign":"rabbit","beginDate":"02/06/1951","endDate":"01/26/1952"},{"sign":"dragon","beginDate":"01/27/1952","endDate":"02/13/1953"},{"sign":"snake","beginDate":"02/14/1953","endDate":"02/02/1954"},{"sign":"horse","beginDate":"02/03/1954","endDate":"01/23/1955"},{"sign":"goat","beginDate":"01/24/1955","endDate":"02/11/1956"},{"sign":"monkey","beginDate":"02/12/1956","endDate":"01/30/1957"},{"sign":"rooster","beginDate":"01/31/1957","endDate":"02/17/1958"},{"sign":"dog","beginDate":"02/18/1958","endDate":"02/07/1959"},{"sign":"pig","beginDate":"02/08/1959","endDate":"01/27/1960"},{"sign":"rat","beginDate":"01/28/1960","endDate":"02/14/1961"},{"sign":"ox","beginDate":"02/15/1961","endDate":"02/04/1962"},{"sign":"tiger","beginDate":"02/05/1962","endDate":"01/24/1963"},{"sign":"rabbit","beginDate":"01/25/1963","endDate":"02/12/1964"},{"sign":"dragon","beginDate":"02/13/1964","endDate":"02/01/1965"},{"sign":"snake","beginDate":"02/02/1965","endDate":"01/20/1966"},{"sign":"horse","beginDate":"01/21/1966","endDate":"02/08/1967"},{"sign":"goat","beginDate":"02/09/1967","endDate":"01/29/1968"},{"sign":"monkey","beginDate":"01/30/1968","endDate":"02/16/1969"},{"sign":"rooster","beginDate":"02/17/1969","endDate":"02/05/1970"},{"sign":"dog","beginDate":"02/06/1970","endDate":"01/26/1971"},{"sign":"pig","beginDate":"01/27/1971","endDate":"02/14/1972"},{"sign":"rat","beginDate":"02/15/1972","endDate":"02/02/1973"},{"sign":"ox","beginDate":"02/03/1973","endDate":"01/22/1974"},{"sign":"tiger","beginDate":"01/23/1974","endDate":"02/10/1975"},{"sign":"rabbit","beginDate":"02/11/1975","endDate":"01/30/1976"},{"sign":"dragon","beginDate":"01/31/1976","endDate":"02/17/1977"},{"sign":"snake","beginDate":"02/18/1977","endDate":"02/06/1978"},{"sign":"horse","beginDate":"02/07/1978","endDate":"01/27/1979"},{"sign":"goat","beginDate":"01/28/1979","endDate":"02/15/1980"},{"sign":"monkey","beginDate":"02/16/1980","endDate":"02/04/1981"},{"sign":"rooster","beginDate":"02/05/1981","endDate":"01/24/1982"},{"sign":"dog","beginDate":"01/25/1982","endDate":"02/12/1983"},{"sign":"pig","beginDate":"02/13/1983","endDate":"02/01/1984"},{"sign":"rat","beginDate":"02/02/1984","endDate":"02/19/1985"},{"sign":"ox","beginDate":"02/20/1985","endDate":"02/08/1986"},{"sign":"tiger","beginDate":"02/09/1986","endDate":"01/28/1987"},{"sign":"rabbit","beginDate":"01/29/1987","endDate":"02/16/1988"},{"sign":"dragon","beginDate":"02/17/1988","endDate":"02/05/1989"},{"sign":"snake","beginDate":"02/06/1989","endDate":"01/26/1990"},{"sign":"horse","beginDate":"01/27/1990","endDate":"02/14/1991"},{"sign":"goat","beginDate":"02/15/1991","endDate":"02/03/1992"},{"sign":"monkey","beginDate":"02/04/1992","endDate":"01/22/1993"},{"sign":"rooster","beginDate":"01/23/1993","endDate":"02/09/1994"},{"sign":"dog","beginDate":"02/10/1994","endDate":"01/30/1995"},{"sign":"pig","beginDate":"01/31/1995","endDate":"02/18/1996"},{"sign":"rat","beginDate":"02/19/1996","endDate":"02/06/1997"},{"sign":"ox","beginDate":"02/07/1997","endDate":"01/27/1998"},{"sign":"tiger","beginDate":"01/28/1998","endDate":"02/15/1999"},{"sign":"rabbit","beginDate":"02/16/1999","endDate":"02/04/2000"},{"sign":"dragon","beginDate":"02/05/2000","endDate":"01/23/2001"},{"sign":"snake","beginDate":"01/24/2001","endDate":"02/11/2002"},{"sign":"horse","beginDate":"02/12/2002","endDate":"01/31/2003"},{"sign":"goat","beginDate":"02/01/2003","endDate":"01/21/2004"},{"sign":"monkey","beginDate":"01/22/2004","endDate":"02/08/2005"},{"sign":"rooster","beginDate":"02/09/2005","endDate":"01/28/2006"},{"sign":"dog","beginDate":"01/29/2006","endDate":"02/17/2007"},{"sign":"pig","beginDate":"02/18/2007","endDate":"02/06/2008"},{"sign":"rat","beginDate":"02/07/2008","endDate":"01/25/2009"},{"sign":"ox","beginDate":"01/26/2009","endDate":"02/13/2010"},{"sign":"tiger","beginDate":"02/14/2010","endDate":"02/02/2011"},{"sign":"rabbit","beginDate":"02/03/2011","endDate":"01/22/2012"},{"sign":"dragon","beginDate":"01/23/2012","endDate":"02/09/2013"},{"sign":"snake","beginDate":"02/10/2013","endDate":"01/30/2014"},{"sign":"horse","beginDate":"01/31/2014","endDate":"02/18/2015"},{"sign":"goat","beginDate":"02/19/2015","endDate":"02/07/2016"},{"sign":"monkey","beginDate":"02/08/2016","endDate":"01/27/2017"},{"sign":"rooster","beginDate":"01/28/2017","endDate":"02/15/2018"},{"sign":"dog","beginDate":"02/16/2018","endDate":"02/04/2019"},{"sign":"pig","beginDate":"02/05/2019","endDate":"01/24/2020"},{"sign":"rat","beginDate":"01/25/2020","endDate":"02/11/2021"},{"sign":"ox","beginDate":"02/12/2021","endDate":"01/31/2022"},{"sign":"tiger","beginDate":"02/01/2022","endDate":"01/21/2023"},{"sign":"rabbit","beginDate":"01/22/2023","endDate":"02/09/2024"},{"sign":"dragon","beginDate":"02/10/2024","endDate":"01/28/2025"},{"sign":"snake","beginDate":"01/29/2025","endDate":"02/16/2026"},{"sign":"horse","beginDate":"02/17/2026","endDate":"02/05/2027"},{"sign":"goat","beginDate":"02/06/2027","endDate":"01/25/2028"},{"sign":"monkey","beginDate":"01/26/2028","endDate":"02/12/2029"},{"sign":"rooster","beginDate":"02/13/2029","endDate":"02/02/2030"},{"sign":"dog","beginDate":"02/03/2030","endDate":"01/22/2031"},{"sign":"pig","beginDate":"01/23/2031","endDate":"02/10/2032"},{"sign":"rat","beginDate":"02/11/2032","endDate":"01/30/2033"},{"sign":"ox","beginDate":"01/31/2033","endDate":"02/18/2034"},{"sign":"tiger","beginDate":"02/19/2034","endDate":"02/07/2035"},{"sign":"rabbit","beginDate":"02/08/2035","endDate":"01/27/2036"},{"sign":"dragon","beginDate":"01/28/2036","endDate":"02/14/2037"},{"sign":"snake","beginDate":"02/15/2037","endDate":"02/03/2038"},{"sign":"horse","beginDate":"02/04/2038","endDate":"01/23/2039"},{"sign":"goat","beginDate":"01/24/2039","endDate":"02/11/2040"},{"sign":"monkey","beginDate":"02/12/2040","endDate":"01/31/2041"},{"sign":"rooster","beginDate":"02/01/2041","endDate":"01/21/2042"},{"sign":"dog","beginDate":"01/22/2042","endDate":"02/09/2043"},{"sign":"pig","beginDate":"02/10/2043","endDate":"01/29/2044"}];
+
+        var descriptions = [
+  {
+    "sign": "Rat",
+    "description": "Resourceful, observant and skillful, those born in the year of the rat are quick learners and can easily adapt to their new surroundings. They are known to make smart decisions but lack skills that would make a good leader: courage and command. The rat is charming and social, but rarely seeks deeper relationships. Some criticize the rat for tendencies to be too picky, opportunistic and narrow-minded.",
+    "horoscope": "People born under the sign of the rat have good business and career opportunities this year, but must beware of two unlucky stars. Be careful who you trust as those with ulterior motives lurk around you, and try not to overwork yourself. Be careful when signing contracts. Romance luck is good if you put in effort this year."
+  },
+  {
+    "sign": "Ox",
+    "description": "Diligent, dependable and hardworking, people born in the year of the ox are ambitious and steadfast in completing their goals. They are honest and patient, but also tend to be stubborn and insistent on doing things a particular way. The ox places great value on friends and family, but given the choice, would prefer to be alone than participate in a social activity.",
+    "horoscope": "People born under the sign of the ox have brilliant luck this year with two lucky stars present. Career, studies and business opportunities will progress well with the help of many kind benefactors, and you will reap investment returns. A romantic star shines over you, so singles will meet their ideal partner and it is a good year for getting married and having children. This year, it is easy for you to have accidents and get sick, so exercise caution."
+  },
+  {
+    "sign": "Tiger",
+    "description": "Confident, competitive and bold, people born in the year of the tiger embrace challenges and are natural leaders. They are well-liked and respected but could also fall short in relationships with their stubbornness and tendency to dominate the spotlight. Energetic and adventurous but unpredictable at times, the tiger needs friends and family who can keep up.",
+    "horoscope": "People born under the sign of the tiger have so-so luck this year and should think twice before making any investments or important decisions this year. Do not covet shortcuts to wealth; any illegal business this year will likely lead to imprisonment. Also, treasure your partner in order to avoid a separation in your relationship."
+  },
+  {
+    "sign": "Rabbit",
+    "description": "Patient, considerate and good at resolving conflict, those born in the year of the rabbit are well-liked by others. The rabbit is not easily discouraged and has a scholarly and measured approach to handling situations. Rabbits are clever and talented but may miss good opportunities because they tend to be reserved and cautious.",
+    "horoscope": "People born under the sign of the rabbit have the best luck this year. Absolutely everything is great – wealth and business opportunities are overflowing. However, don't get carried away or you might lose your wealth, and watch out for your health. You also have soaring romance luck and singles will meet their ideal partners."
+  },
+  {
+    "sign": "Dragon",
+    "description": "Dominant, passionate and fearless, those born in the year of the dragon are known to be leaders. They have quick tempers but are generous to their loved ones. Ambitious and willing to take risks, they can work through stressful situations with confidence. The dragon is the only mythical animal in the zodiac and can both swim and fly. Some consider this symbolic of a life with few obstacles.",
+    "horoscope": "People born under the sign of the dragon do not have the best of luck this year, but if you are optimistic and persevere, you can sail through all challenges. Avoid making investments and do not gamble. Lie low and plan ahead long term. Be discerning about potential partners to identify those with good intentions. People in relationships might have problems from their families."
+  },
+  {
+    "sign": "Snake",
+    "description": "Intuitive and wise, those born in the year of the snake are considered great thinkers and problem solvers. Respected for their diligence and hard work, they do well under pressure but can get stressed when their lives are not in order. Snakes are cryptic by nature ― they are selective in their friends and have jealous and obsessive tendencies.",
+    "horoscope": "People born under the sign of the snake also have excellent luck this year. 2016 will be a smooth sailing year and a good year to make suitable investments. It is also a good year for getting married and having children. Be careful as you might be prone to minor accidents."
+  },
+  {
+    "sign": "Horse",
+    "description": "Popular, witty and lively, those born in the year of the horse are easy to get along with. They prefer to be around people and like to entertain ― others are drawn to their optimism and energy.  They can be a little too self-centered at times and do not like being told what to do. Horses tend to be good communicators and rational decision-makers.",
+    "horoscope": "People born under the sign of the horse will sadly have luck that is even worse than last year, however, if you stay optimistic, there is nothing that you cannot handle. Be cautious and conserve your resources as wealth luck is unstable this year. Singles need to be patient, and for those who are attached, the support of your partner will help you through this year. Maintain a balanced lifestyle to keep your health in check."
+  },
+  {
+    "sign": "Goat",
+    "description": "Calm and thoughtful, those born in the year of the ram (also known as goat or sheep) like being part of a group but shy away from the center of attention. They have a creative streak, a strong sense of justice and are well-liked for their kindness. Reserved about their thoughts, goats tend to welcome only a few close friends into their lives. They have a penchant for fashion.",
+    "horoscope": "People born under the sign of the goat can look forward to much better luck than last year. You have strong windfall and romance luck, so long term investments should be considered and singles will have plenty of choices. Take extra caution with your health and safety as unlucky stars might cause you to have accidents and illnesses."
+  },
+  {
+    "sign": "Monkey",
+    "description": "Mischievous, curious and clever, those born in the year of the monkey are fast learners and have many interests. They are easily bored and may rub some the wrong way with their playful jokes and eccentricities. Monkeys are social and creative and tend to be adventurous.",
+    "horoscope": "People born under the sign of the monkey have several unlucky stars this year, but this is normal when it is the year of your sign. It is a good idea to be very cautious with your finances this year and not to make investments. You should also rest more and pay attention to your health. Put effort into existing relationships and try to control your temper so that you don't scare potential partners away."
+  },
+  {
+    "sign": "Rooster",
+    "description": "Observant, talented and hardworking, those born in the year of the rooster are proud of their accomplishments and happiest when socializing. They are confident and outspoken and like being in the spotlight. Their demand for attention may irritate some people, but generally they are well-liked for their beauty, honesty and loyalty to friends.",
+    "horoscope": "People born under the sign of the rooster have much improved luck compared to last year. It is a good time to excel at academics or career, but make sure you save and plan for a rainy day by setting up a budget. There is no health threat for your sign this year, and singles with a partner in mind will have success."
+  },
+  {
+    "sign": "Dog",
+    "description": "Generous, loyal and well-liked, those born in the year of the dog tend to put friends and family in front of their own needs. They seek to relieve other people’s stress and would sacrifice their own happiness to avoid troubling those around them. They have little ambition for money and power and rarely speak their minds. Dogs are not confrontational, and others may take advantage of their kindness.",
+    "horoscope": "People born under the sign of the dog will have a challenging period this year. Be cautious in all matters, particularly wealth and business. Trust your instincts − if something seems too good to be true, it probably is. You may find yourself too preoccupied with other issues in your life to have much time for romance, so make sure you put in effort to keep existing relationships alive, and don't reject potential opportunities if you are single."
+  },
+  {
+    "sign": "Pig",
+    "description": "Compassionate and generous, those born in the year of the pig do not ask for help but are always there for others. They think the best in people, but some might abuse this trust. Pigs have a great sense of responsibility ― once they commit to a goal, they are diligent and focused. They are rarely stressed and do not bother with petty concerns. Pigs have creative imaginations and a tendency to indulge.",
+    "horoscope": "People born under the sign of the pig have a slight improvement in luck from the previous year. Wealth luck is stable and females may get occasional windfalls due to a lucky star, but it is important to control your emotions. Love entanglements could also be stumbling blocks so try to avoid them or you will have trouble. Potential mates are all unsuitable this year."
+  }
+]
+
+        var compatibility = [{"sign":"Rat","Rat":"x","Ox":"1","Tiger":"x","Rabbit":"x","Dragon":"1","Snake":"x","Horse":"2","Goat":"2","Monkey":"1","Rooster":"2","Dog":"x","Pig":"x"},{"sign":"Ox","Rat":"1","Ox":"x","Tiger":"x","Rabbit":"2","Dragon":"2","Snake":"1","Horse":"2","Goat":"2","Monkey":"x","Rooster":"1","Dog":"2","Pig":"x"},{"sign":"Tiger","Rat":"x","Ox":"x","Tiger":"x","Rabbit":"x","Dragon":"x","Snake":"2","Horse":"1","Goat":"x","Monkey":"2","Rooster":"x","Dog":"1","Pig":"x"},{"sign":"Rabbit","Rat":"x","Ox":"2","Tiger":"x","Rabbit":"x","Dragon":"2","Snake":"x","Horse":"2","Goat":"1","Monkey":"x","Rooster":"2","Dog":"1","Pig":"1"},{"sign":"Dragon","Rat":"1","Ox":"2","Tiger":"x","Rabbit":"2","Dragon":"X","Snake":"x","Horse":"x","Goat":"x","Monkey":"1","Rooster":"1","Dog":"2","Pig":"x"},{"sign":"Snake","Rat":"x","Ox":"1","Tiger":"2","Rabbit":"x","Dragon":"x","Snake":"x","Horse":"x","Goat":"x","Monkey":"2","Rooster":"1","Dog":"x","Pig":"2"},{"sign":"Horse","Rat":"2","Ox":"2","Tiger":"1","Rabbit":"2","Dragon":"x","Snake":"x","Horse":"X","Goat":"1","Monkey":"x","Rooster":"x","Dog":"1","Pig":"x"},{"sign":"Goat","Rat":"2","Ox":"2","Tiger":"x","Rabbit":"1","Dragon":"x","Snake":"x","Horse":"1","Goat":"x","Monkey":"x","Rooster":"x","Dog":"2","Pig":"1"},{"sign":"Monkey","Rat":"1","Ox":"x","Tiger":"2","Rabbit":"x","Dragon":"1","Snake":"2","Horse":"x","Goat":"x","Monkey":"x","Rooster":"x","Dog":"x","Pig":"2"},{"sign":"Rooster","Rat":"2","Ox":"1","Tiger":"x","Rabbit":"2","Dragon":"1","Snake":"1","Horse":"x","Goat":"x","Monkey":"x","Rooster":"X","Dog":"2","Pig":"x"},{"sign":"Dog","Rat":"x","Ox":"2","Tiger":"1","Rabbit":"1","Dragon":"2","Snake":"x","Horse":"1","Goat":"2","Monkey":"x","Rooster":"2","Dog":"x","Pig":"x"},{"sign":"Pig","Rat":"x","Ox":"x","Tiger":"x","Rabbit":"1","Dragon":"x","Snake":"2","Horse":"x","Goat":"1","Monkey":"2","Rooster":"x","Dog":"x","Pig":"X"}];
+     
+</script>
+
+<h2 id="result"></h2>
+
+<input type="submit" value="Submit" onclick="checkDate()">
+    <div class="row left">
+        <div class="span12 spanleft">
+            <h2 id="display_sign"></h2>
+            <p id="sign_description"></p>
+            <p id="sign_horoscope"></p>
+        </div>
+</body>
+
+</html>
